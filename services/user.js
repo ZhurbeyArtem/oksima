@@ -61,7 +61,7 @@ export async function login({ email, password }) {
         firstName: data.firstName,
         lastName: data.lastName,
         balance: data.balance,
-        
+        role: data.role
       },
     };
   } catch (error) {

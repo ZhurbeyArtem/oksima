@@ -22,7 +22,7 @@ export const User = sequelize.define("user", {
   },
   balance: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    defaultValue: 0,
   },
   role: {
     type: DataTypes.ENUM,
