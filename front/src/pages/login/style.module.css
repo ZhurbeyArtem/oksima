@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 98vh;
+  flex-direction: column;
+  gap: 10px;
+}
