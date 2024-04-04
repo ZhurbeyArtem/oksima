@@ -26,7 +26,41 @@ export const registration = async (data) => {
     );
     return user;
   } catch (error) {
-    console.log(error);
+    throw error.response.data;
+  }
+};
+
+export const forgotPassword = async (email) => {
+  try {
+    const result = await axios.post(
+      `${import.meta.env.VITE_API_BACK_URL}/users/password/forgot`,
+      email
+    );
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        user: { ...email },
+      })
+    );
+    return result;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const resetPassword = async ({ code, email, password }) => {
+  try {
+    console.log(code);
+    const result = await axios.post(
+      `${import.meta.env.VITE_API_BACK_URL}/users/password/reset`,
+      {
+        email,
+        code,
+        password,
+      }
+    );
+    return result;
+  } catch (error) {
     throw error.response.data;
   }
 };

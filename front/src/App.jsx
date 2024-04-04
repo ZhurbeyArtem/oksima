@@ -9,8 +9,21 @@ import RegistrationPage from "./pages/registration/Registration";
 import Layout from "./pages/layout/Layout";
 import { useUserStore } from "./store/user.store";
 import Home from "./pages/home/Home";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
+import ResetPassword from "./pages/resetPassword/ResetPassword";
+import Profile from "./pages/profile/Profile";
+import Proposals from "./pages/proposals/Proposals";
 
-const { HOME, SIGN_IN, SIGN_UP, SIGN_UP_MANAGER } = ROUTES;
+const {
+  HOME,
+  SIGN_IN,
+  SIGN_UP,
+  SIGN_UP_MANAGER,
+  RESET_PASSWORD,
+  FORGOT_PASSWORD,
+  PROFILE,
+  PROPOSALS,
+} = ROUTES;
 function App() {
   return (
     <Routes>
@@ -48,6 +61,39 @@ function App() {
             </PublicRoute>
           }
         />
+        <Route
+          path={FORGOT_PASSWORD}
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path={RESET_PASSWORD}
+          element={
+            <PublicRoute>
+              <ResetPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path={PROFILE}
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={PROPOSALS}
+          element={
+            <PrivateRoute>
+              <Proposals />
+            </PrivateRoute>
+          }
+        />
+
         {/* <Route
           path={`${TRANSACTION}/${HISTORY}/:transactionsType`}
           element={

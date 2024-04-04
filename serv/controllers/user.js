@@ -1,5 +1,6 @@
 import {
   changeBalance,
+  changeName,
   findUsersByRole,
   forgotPassword,
   login,
@@ -54,7 +55,17 @@ export const changeBalanceController = async (req, res) => {
 export const findUsersByRoleController = async (req, res) => {
   try {
     const result = await findUsersByRole(req.body);
-    
+
+    res.json(result);
+  } catch (error) {
+    res.status(error.status).json({ message: error.message });
+  }
+};
+
+export const changeNameController = async (req, res) => {
+  try {
+    const result = await changeName(req.user, req.body);
+
     res.json(result);
   } catch (error) {
     res.status(error.status).json({ message: error.message });

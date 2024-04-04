@@ -6,6 +6,7 @@ import {
   resetPasswordController,
   changeBalanceController,
   findUsersByRoleController,
+  changeNameController,
 } from "../controllers/user.js";
 import { validateBody } from "../helpers/validateBody.js";
 import {
@@ -16,6 +17,7 @@ import {
   registerSchema,
   resetPasswordSchema,
 } from "../schemas/user.js";
+import { authMiddleware } from "../middlewares/auth.js";
 
 const usersRouter = express.Router();
 
@@ -42,6 +44,8 @@ usersRouter.post(
   validateBody(changeBalanceSchema),
   changeBalanceController
 );
+
+usersRouter.put("/", authMiddleware, changeNameController);
 
 usersRouter.get(
   "/",

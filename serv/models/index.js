@@ -9,8 +9,9 @@ Proposal.belongsTo(User)
 User.hasMany(Payout)
 Payout.belongsTo(User)
 
-Proposal.belongsToMany(Category, {through: 'proposal_category'})
-Category.belongsToMany(Proposal, { through: "proposal_category" });
+Category.hasMany(Proposal);
+Proposal.belongsTo(Category);
+
 
 
 

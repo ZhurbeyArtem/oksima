@@ -18,7 +18,6 @@ const FormComponent = ({ method, handleSubmit }) => {
       }}
       labelAlign="left"
     >
-      {method === "login" && <></>}
 
       <Form.Item
         label="Email"

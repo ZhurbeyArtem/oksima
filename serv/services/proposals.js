@@ -1,24 +1,35 @@
 import HttpError from "../helpers/httpError.js";
 import { Proposal } from "../models/proposal.js";
+import { Category } from "../models/categories.js";
+import { Op } from "sequelize";
 
 export async function getProposals({ role }) {
   try {
     let proposals;
     switch (role) {
       case "manager":
-        proposals = await Proposal.findAll();
+        proposals = await Proposal.findAll({
+          include: Category,
+          where: { status: { [Op.not]: "finished" } },
+          order: [["id", "DESC"]],
+        });
         break;
       case "blogger":
         proposals = await Proposal.findAll({
+          include: Category,
           where: { bloggerId: null },
+          order: [["id", "DESC"]],
         });
         break;
       case "brand":
         proposals = await Proposal.findAll({
+          include: Category,
           where: { brandId: null },
+          order: [["id", "DESC"]],
         });
         break;
     }
+
     return proposals;
   } catch (error) {
     throw {
@@ -32,11 +43,16 @@ export async function createProposal({ id, role }, data) {
   try {
     let proposal;
     switch (role) {
-      case "manager" || "brand":
-        proposal = await Proposal.create({ ...data, brandId: id });
+      case "manager":
+      case "brand":
+        proposal = await Proposal.create({ ...data, brandId: id, userId: id });
         break;
       case "blogger":
-        proposal = await Proposal.create({ ...data, bloggerId: id });
+        proposal = await Proposal.create({
+          ...data,
+          bloggerId: id,
+          userId: id,
+        });
         break;
     }
     return proposal;
@@ -86,8 +102,7 @@ export async function applyProposal({ id, role }, proposalId) {
   try {
     const proposal = await Proposal.findByPk(proposalId);
     if (role === "manager" || role === "brand") proposal.brandId = id;
-    if (role === 'blogger') proposal.bloggerId = id
-  
+    if (role === "blogger") proposal.bloggerId = id;
   } catch (error) {
     throw {
       message: error.message || "Ops something happened wrong",

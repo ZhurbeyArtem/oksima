@@ -7,10 +7,13 @@ import style from "./style.module.css";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../store/user.store";
+
 const LoginPage = () => {
   const [api, contextHolder] = notification.useNotification();
   const setIsAuth = useUserStore((state) => state.setIsAuth);
 
+
+  
   const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: login,

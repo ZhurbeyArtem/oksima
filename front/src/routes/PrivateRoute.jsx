@@ -3,7 +3,6 @@ import { useUserStore } from "../store/user.store";
 
 export const PrivateRoute = ({ children }) => {
   const isAuth = useUserStore((state) => state.isAuth);
-console.log(isAuth);
 
   const location = useLocation();
   return isAuth ? (

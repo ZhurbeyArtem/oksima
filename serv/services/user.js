@@ -17,8 +17,6 @@ export async function registration(data) {
       ...data,
       password: hashedPassword,
     });
-    if (role === "manager") newUser.balance = null;
-    else newUser.balance = 0;
     await newUser.save();
 
     return {
@@ -61,7 +59,8 @@ export async function login({ email, password }) {
         firstName: data.firstName,
         lastName: data.lastName,
         balance: data.balance,
-        role: data.role
+        role: data.role,
+        id: data.id,
       },
     };
   } catch (error) {
@@ -220,3 +219,20 @@ export async function findUsersByRole({ role, page = 1, limit = 10 }) {
   }
 }
 
+export async function changeName({ id }, { firstName, lastName }) {
+  try {
+    const user = await User.findByPk(id);
+    user.firstName = firstName;
+    user.lastName = lastName;
+    await user.save();
+    return {
+      firstName,
+      lastName,
+    };
+  } catch (error) {
+    throw {
+      message: error.message || "Ops something happened wrong",
+      status: error.code || 500,
+    };
+  }
+}

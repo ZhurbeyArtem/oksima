@@ -28,11 +28,14 @@ export const Proposal = sequelize.define("proposal", {
   status: {
     type: DataTypes.ENUM,
     values: ["finished", "inProcess", "notStarted"],
+    defaultValue: "notStarted",
   },
   bloggerConfirm: {
     type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
   brandConfirm: {
     type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
 });
