@@ -1,0 +1,27 @@
+.container {
+  margin: 0 auto;
+  padding-top: 100px;
+  max-width: 1280px;
+  width: 100%;
+}
+.topSection {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.btns {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  padding: 0;
+  border: none;
+  background-color: none;
+  box-shadow: none;
+}
+.icons {
+  font-size: 30px;
+}
+.num {
+  width: 100%;
+}

@@ -1,6 +1,7 @@
-import style from "./style.module.css";
-import { useUserStore } from "../../store/user.store";
 import { Link } from "react-router-dom";
+import { useUserStore } from "../../store/user.store";
+
+import style from "./style.module.css";
 
 const Sidebar = () => {
   const user = useUserStore((state) => state.user);
@@ -29,8 +30,16 @@ const Sidebar = () => {
             Proposals
           </Link>
         </li>
-        <li className={style.item}>Users</li>
-        <li className={style.item}>Support</li>
+        {user.role !== "blogger" && (
+          <li className={style.item}>
+            <Link to="users" className={style.link}>
+              Users
+            </Link>
+          </li>
+        )}
+        <li className={style.item}>
+          <Link className={style.link} to='support'>Support</Link>
+        </li>
         <li className={`${style.item} ${style.link}`} onClick={logOutHandle}>
           LogOut
         </li>

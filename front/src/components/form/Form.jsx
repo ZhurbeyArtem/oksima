@@ -1,6 +1,7 @@
 import { Button, Form, Input, Select } from "antd";
-import style from "./style.module.css";
 import { Link, useLocation } from "react-router-dom";
+import style from "./style.module.css";
+
 const { Option } = Select;
 
 const FormComponent = ({ method, handleSubmit }) => {

@@ -1,18 +1,21 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ROUTES } from "./constants/routes.constants";
+
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { PublicRoute } from "./routes/PublicRoute";
 
 import LoginPage from "./pages/login/Login";
 import RegistrationPage from "./pages/registration/Registration";
 import Layout from "./pages/layout/Layout";
-import { useUserStore } from "./store/user.store";
 import Home from "./pages/home/Home";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Profile from "./pages/profile/Profile";
 import Proposals from "./pages/proposals/Proposals";
+import Users from "./pages/users/Users";
+import Payment from "./pages/payment/Payment";
+import Support from "./pages/support/Support";
 
 const {
   HOME,
@@ -23,6 +26,9 @@ const {
   FORGOT_PASSWORD,
   PROFILE,
   PROPOSALS,
+  USERS,
+  PAYMENTS,
+  SUPPORT,
 } = ROUTES;
 function App() {
   return (
@@ -93,15 +99,30 @@ function App() {
             </PrivateRoute>
           }
         />
-
-        {/* <Route
-          path={`${TRANSACTION}/${HISTORY}/:transactionsType`}
+        <Route
+          path={USERS}
           element={
             <PrivateRoute>
-              <TarnsactionsHistoryPage />
+              <Users />
             </PrivateRoute>
           }
-        /> */}
+        />
+        <Route
+          path={PAYMENTS}
+          element={
+            <PrivateRoute>
+              <Payment />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={SUPPORT}
+          element={
+            <PrivateRoute>
+              <Support />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<Navigate to={"/"} />} />
       </Route>
     </Routes>

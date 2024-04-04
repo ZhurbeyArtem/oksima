@@ -1,35 +1,37 @@
-import HttpError from "../helpers/httpError.js";
-import { Proposal } from "../models/proposal.js";
-import { Category } from "../models/categories.js";
 import { Op } from "sequelize";
 
-export async function getProposals({ role }) {
+import { Proposal } from "../models/proposal.js";
+import { Category } from "../models/categories.js";
+
+export async function getProposals({ role }, { id }) {
   try {
     let proposals;
     switch (role) {
       case "manager":
         proposals = await Proposal.findAll({
           include: Category,
-          where: { status: { [Op.not]: "finished" } },
+          where: {
+            brandId: id || null,
+            status: { [Op.not]: "finished" },
+          },
           order: [["id", "DESC"]],
         });
         break;
       case "blogger":
         proposals = await Proposal.findAll({
           include: Category,
-          where: { bloggerId: null },
+          where: { bloggerId: id || null },
           order: [["id", "DESC"]],
         });
         break;
       case "brand":
         proposals = await Proposal.findAll({
           include: Category,
-          where: { brandId: null },
+          where: { brandId: id || null },
           order: [["id", "DESC"]],
         });
         break;
     }
-
     return proposals;
   } catch (error) {
     throw {
@@ -98,25 +100,14 @@ export async function finishProposal({ id, role }, proposalId) {
   }
 }
 
-export async function applyProposal({ id, role }, proposalId) {
-  try {
-    const proposal = await Proposal.findByPk(proposalId);
-    if (role === "manager" || role === "brand") proposal.brandId = id;
-    if (role === "blogger") proposal.bloggerId = id;
-  } catch (error) {
-    throw {
-      message: error.message || "Ops something happened wrong",
-      status: error.status || 500,
-    };
-  }
-}
-
-export async function acceptProposal({ id, role }, proposalId) {
+export async function acceptProposal({ id, role }, { id: proposalId }) {
   try {
     const proposal = await Proposal.findByPk(proposalId);
 
     if (role === "manager" || role === "brand") proposal.brandId = id;
     if (role === "blogger") proposal.bloggerId = id;
+    proposal.save();
+    return "Success";
   } catch (error) {
     throw {
       message: error.message || "Ops something happened wrong",

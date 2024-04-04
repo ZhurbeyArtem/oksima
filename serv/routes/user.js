@@ -11,7 +11,6 @@ import {
 import { validateBody } from "../helpers/validateBody.js";
 import {
   changeBalanceSchema,
-  findUsersByRoleSchema,
   forgotPasswordSchema,
   loginSchema,
   registerSchema,
@@ -49,7 +48,7 @@ usersRouter.put("/", authMiddleware, changeNameController);
 
 usersRouter.get(
   "/",
-  validateBody(findUsersByRoleSchema),
+  authMiddleware,
   findUsersByRoleController
 );
 

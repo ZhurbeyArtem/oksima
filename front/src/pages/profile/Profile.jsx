@@ -1,8 +1,11 @@
 import { Button, Form, Input, notification } from "antd";
-import style from "./style.module.css";
-import { useUserStore } from "../../store/user.store";
 import { useMutation } from "@tanstack/react-query";
+
+import { useUserStore } from "../../store/user.store";
+
 import { changeName } from "../../services/user.service";
+
+import style from "./style.module.css";
 
 const Profile = () => {
   const user = useUserStore((state) => state.user);

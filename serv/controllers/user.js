@@ -54,7 +54,7 @@ export const changeBalanceController = async (req, res) => {
 
 export const findUsersByRoleController = async (req, res) => {
   try {
-    const result = await findUsersByRole(req.body);
+    const result = await findUsersByRole(req.query);
 
     res.json(result);
   } catch (error) {

@@ -1,12 +1,14 @@
-import FormComponent from "../../components/form/Form";
-import Links from "../../components/links/Links";
-import { login } from "../../services/auth.service";
 import { notification } from "antd";
-
-import style from "./style.module.css";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+
+import FormComponent from "../../components/form/Form";
+import Links from "../../components/links/Links";
+
+import { login } from "../../services/auth.service";
 import { useUserStore } from "../../store/user.store";
+
+import style from "./style.module.css";
 
 const LoginPage = () => {
   const [api, contextHolder] = notification.useNotification();

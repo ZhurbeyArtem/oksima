@@ -56,9 +56,3 @@ export const changeBalanceSchema = Joi.object({
     "any.required": "Value is required",
   }),
 });
-export const findUsersByRoleSchema = Joi.object({
-  role: Joi.string().required().valid("manager", "blogger", "brand").messages({
-    "any.required": "role is required",
-    "any.only": "Invalid role, choose one of them manager, blogger, brand",
-  }),
-});

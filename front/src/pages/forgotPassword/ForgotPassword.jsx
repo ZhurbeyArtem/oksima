@@ -1,8 +1,11 @@
 import { Button, Flex, Form, Input, notification } from "antd";
-import style from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+
 import { forgotPassword } from "../../services/auth.service";
+
+import style from "./style.module.css";
+
 
 const ForgotPassword = () => {
   const navigate = useNavigate();

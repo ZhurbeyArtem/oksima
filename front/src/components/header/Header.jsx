@@ -1,11 +1,17 @@
-import style from "./style.module.css";
-import { useUserStore } from "../../store/user.store";
 import { Form, notification } from "antd";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useUserStore } from "../../store/user.store";
+
 import { getCategories } from "../../services/category.service";
 import { createProposal } from "../../services/proposal.service";
+
 import HeaderModal from "../headerModal/HeaderModal";
+
+import style from "./style.module.css";
+
 
 const Header = () => {
   const user = useUserStore((state) => state.user);
@@ -38,8 +44,6 @@ const Header = () => {
         message: message,
       });
     },
-
-    
   });
 
   const handleSubmit = async () => {
@@ -62,7 +66,11 @@ const Header = () => {
               Add proposals
             </li>
           )}
-          <li className={style.item}>Payments</li>
+          <li className={style.item}>
+            <Link className={style.link} to="payments">
+              Payments
+            </Link>
+          </li>
         </ul>
       </div>
       <HeaderModal

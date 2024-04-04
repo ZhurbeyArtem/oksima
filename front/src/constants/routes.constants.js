@@ -8,5 +8,6 @@ export const ROUTES = {
   PROFILE: 'profile',
   PROPOSALS: 'proposals',
   PAYMENTS: 'payments',
-  USERS: 'users'
+  USERS: 'users',
+  SUPPORT: 'support'
 };

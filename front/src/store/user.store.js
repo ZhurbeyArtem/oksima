@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 export const useUserStore = create((set) => ({
   isAuth: localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user")).isAuth

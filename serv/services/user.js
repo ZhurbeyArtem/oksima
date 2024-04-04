@@ -194,23 +194,15 @@ export async function changeBalance({ id, value }) {
   }
 }
 
-export async function findUsersByRole({ role, page = 1, limit = 10 }) {
+export async function findUsersByRole({ role }) {
   try {
-    const offset = (page - 1) * limit;
-
     const users = await User.findAll({
       where: { role: role },
-      offset: offset,
-      limit: limit,
+      attributes: ["firstName", "lastName", "balance", "role", "id", "email"],
+      order: [["id", "DESC"]],
     });
 
-    const totalUsersCount = await User.count({ where: { role: role } });
-    const totalPages = Math.ceil(totalUsersCount / limit);
-
-    return {
-      users: users,
-      totalPages: totalPages,
-    };
+    return users;
   } catch (error) {
     throw {
       message: error.message || "Ops something happened wrong",

@@ -7,10 +7,10 @@ export const Payout = sequelize.define("payout", {
     primaryKey: true,
     autoIncrement: true,
   },
-  bloggerId: {
+  transferFromId: {
     type: DataTypes.INTEGER,
   },
-  brandId: {
+  transferToId: {
     type: DataTypes.INTEGER,
   },
   sum: {
@@ -18,6 +18,7 @@ export const Payout = sequelize.define("payout", {
   },
   status: {
     type: DataTypes.ENUM,
-    values: ["finished", "rejected", "inProcess"],
+    values: ["finished", "rejected", 'waiting'],
+    defaultValue: 'waiting'
   },
 });
