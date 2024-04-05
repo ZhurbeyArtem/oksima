@@ -5,6 +5,7 @@ import { ROUTES } from "./constants/routes.constants";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { PublicRoute } from "./routes/PublicRoute";
 
+import Users from "./pages/users/Users";
 import LoginPage from "./pages/login/Login";
 import RegistrationPage from "./pages/registration/Registration";
 import Layout from "./pages/layout/Layout";
@@ -15,7 +16,6 @@ import Profile from "./pages/profile/Profile";
 import Proposals from "./pages/proposals/Proposals";
 import Payment from "./pages/payment/Payment";
 import Support from "./pages/support/Support";
-import Users from "./pages/users/Users";
 
 
 const {
