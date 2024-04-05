@@ -15,7 +15,7 @@ import Profile from "./pages/profile/Profile";
 import Proposals from "./pages/proposals/Proposals";
 import Payment from "./pages/payment/Payment";
 import Support from "./pages/support/Support";
-// import Users from "./pages/users/Users";
+import Users from "./pages/users/Users";
 
 
 const {
@@ -100,14 +100,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path={USERS}
           element={
             <PrivateRoute>
               <Users />
             </PrivateRoute>
           }
-        /> */}
+        />
         <Route
           path={PAYMENTS}
           element={
