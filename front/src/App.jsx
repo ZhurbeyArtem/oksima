@@ -13,7 +13,7 @@ import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Profile from "./pages/profile/Profile";
 import Proposals from "./pages/proposals/Proposals";
-import Users from "./pages/users/Users";
+import Users from "./pages/users/Users.jsx";
 import Payment from "./pages/payment/Payment";
 import Support from "./pages/support/Support";
 
