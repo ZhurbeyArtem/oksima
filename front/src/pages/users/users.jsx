@@ -14,7 +14,7 @@ import { changeBalance, getAll } from "../../services/user.service";
 
 import { useUserStore } from "../../store/user.store";
 
-import Columns from "./Setting";
+// import Columns from "./Setting";
 
 import style from "./style.module.css";
 
@@ -84,12 +84,12 @@ const Users = () => {
           className={style.select}
         />
 
-        <Table
+        {/* <Table
           bordered
           dataSource={users}
           rowKey="id"
           columns={Columns(handleOpen)}
-        />
+        /> */}
         <Modal
           title="Add sum to user balance"
           open={open}
