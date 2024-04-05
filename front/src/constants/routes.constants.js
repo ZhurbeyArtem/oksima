@@ -4,7 +4,7 @@ export const ROUTES = {
   SIGN_UP: "register",
   FORGOT_PASSWORD: 'forgot',
   RESET_PASSWORD: 'reset',
-  SIGN_UP_MANAGER: 'register/manager',
+  SIGN_UP_MANAGER: 'manager',
   PROFILE: 'profile',
   PROPOSALS: 'proposals',
   PAYMENTS: 'payments',
