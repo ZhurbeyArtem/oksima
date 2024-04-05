@@ -1,0 +1,1 @@
+not all routes/controller is on front end part so categories and finish proposal you can use only on back end part 
